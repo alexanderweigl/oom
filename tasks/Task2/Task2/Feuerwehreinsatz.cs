@@ -8,22 +8,68 @@ namespace Task2
 {
     class Feuerwehreinsatz
     {
-        private string ort;
+        private Adresse ort;
+        private DateTime beginn;
+        private DateTime ende;
+        private Person melder;
+        private List<Person> beteiligte;
         private int alarmstufe;
-        private string beteiligter;
+        private string meldebild;
 
-        public Feuerwehreinsatz(string ort, int alarmstufe)
+        public Feuerwehreinsatz(Adresse ort, Person melder, string meldebild)
         {
+            this.beginn = DateTime.Now;
             this.ort = ort;
-            this.alarmstufe = alarmstufe;
+            this.melder = melder;
+            this.meldebild = meldebild;
+            this.alarmstufe = 1;
         }
 
-        public string GetOrt() => ort;
-        public int GetAlarmstufe() => alarmstufe;
-
-        public void UpdateAlarmstufe(int alarmstufe)
+        public void BeteiligtenHinzu(Person beteiligte)
         {
-            this.alarmstufe = alarmstufe;
+            if(this.beteiligte == null)
+                this.beteiligte = new List<Person>();
+
+            this.beteiligte.Add(beteiligte);
+        }
+
+        public void Ende()
+        {
+            this.ende = DateTime.Now;
+        }
+
+        private string AnschriftToString(Adresse ort)
+        {
+            if ((ort.Stiege == 0) && (ort.Stock == 0) && (ort.Tuer == 0))
+                return $"{ort.PLZ} {ort.Stadt}, {ort.Straße} {ort.Hausnummer}";
+            else if ((ort.Stiege == 0) && (ort.Stock == 0))
+                return $"{ort.PLZ} {ort.Stadt}, {ort.Straße} {ort.Hausnummer}/{ort.Tuer}";
+            else
+                return $"{ort.PLZ} {ort.Stadt}, {ort.Straße} {ort.Hausnummer}/{ort.Stiege}/{ort.Stock}/{ort.Tuer}";
+        }
+
+        public override string ToString()
+        {
+            string tmp = $"Einsatz: {meldebild} - {alarmstufe}\nBeginn: {beginn}\n";
+            if (ende != new DateTime())
+                tmp += $"Ende: {ende}\n";
+            tmp += $"Einsatzort: {AnschriftToString(ort)}\nMelder: {melder.Vorname} {melder.Nachname}";
+            
+            if(beteiligte != null)
+            {
+                tmp += "\n\nBeteiligte:\n";
+                foreach (Person x in beteiligte)
+                {
+                    tmp += $"{x.Vorname} {x.Nachname}";
+
+                    if (x.Anschrift != null)
+                        tmp += $" - {AnschriftToString(x.Anschrift)}\n";
+                    else
+                        tmp += "\n";
+                }
+            }
+
+            return tmp;
         }
     }
 }
