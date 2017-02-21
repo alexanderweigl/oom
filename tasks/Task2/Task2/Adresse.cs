@@ -23,7 +23,13 @@ namespace Task2
         public int Stiege { get { return stiege; } set { } }
         public int Stock { get { return stock; } set { } }
         public int Tuer { get { return tuer; } set { } }
-
+        /// <summary>
+        /// Erstellt ein Adresse
+        /// </summary>
+        /// <param name="plz"></param>
+        /// <param name="stadt"></param>
+        /// <param name="straße"></param>
+        /// <param name="hausnummer"></param>
         public Adresse(int plz, string stadt, string straße, int hausnummer)
         {
             this.plz = plz;
@@ -31,6 +37,14 @@ namespace Task2
             this.straße = straße;
             this.hausnummer = hausnummer;
         }
+        /// <summary>
+        /// Erstellt eine Adresse
+        /// </summary>
+        /// <param name="plz"></param>
+        /// <param name="stadt"></param>
+        /// <param name="straße"></param>
+        /// <param name="hausnummer"></param>
+        /// <param name="tuer"></param>
         public Adresse(int plz, string stadt, string straße, int hausnummer, int tuer)
         {
             this.plz = plz;
@@ -39,6 +53,15 @@ namespace Task2
             this.hausnummer = hausnummer;
             this.tuer = tuer;
         }
+        /// <summary>
+        /// Erstellt eine Adresse
+        /// </summary>
+        /// <param name="plz"></param>
+        /// <param name="stadt"></param>
+        /// <param name="straße"></param>
+        /// <param name="hausnummer"></param>
+        /// <param name="stiege"></param>
+        /// <param name="tuer"></param>
         public Adresse(int plz, string stadt, string straße, int hausnummer, int stiege, int tuer)
         {
             this.plz = plz;
@@ -48,6 +71,16 @@ namespace Task2
             this.stiege = stiege;
             this.tuer = tuer;
         }
+        /// <summary>
+        /// Erstellt eine Adresse
+        /// </summary>
+        /// <param name="plz"></param>
+        /// <param name="stadt"></param>
+        /// <param name="straße"></param>
+        /// <param name="hausnummer"></param>
+        /// <param name="stiege"></param>
+        /// <param name="stock"></param>
+        /// <param name="tuer"></param>
         public Adresse(int plz, string stadt, string straße, int hausnummer, int stiege, int stock, int tuer)
         {
             this.plz = plz;
