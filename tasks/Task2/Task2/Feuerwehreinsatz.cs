@@ -8,8 +8,8 @@ namespace Task2
 {
     class Feuerwehreinsatz
     {
-        public string ort;
-        public int alarmstufe;
+        private string ort;
+        private int alarmstufe;
         private string beteiligter;
 
         public Feuerwehreinsatz(string ort, int alarmstufe)
@@ -17,6 +17,9 @@ namespace Task2
             this.ort = ort;
             this.alarmstufe = alarmstufe;
         }
+
+        public string GetOrt() => ort;
+        public int GetAlarmstufe() => alarmstufe;
 
         public void UpdateAlarmstufe(int alarmstufe)
         {

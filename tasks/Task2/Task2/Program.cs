@@ -12,12 +12,12 @@ namespace Task2
         {
             Feuerwehreinsatz einsatz = new Feuerwehreinsatz("Wien", 2);
 
-            Console.WriteLine("Einsatzort: " + einsatz.ort);
-            Console.WriteLine("Alarmstufe: " + einsatz.alarmstufe);
+            Console.WriteLine("Einsatzort: " + einsatz.GetOrt());
+            Console.WriteLine("Alarmstufe: " + einsatz.GetAlarmstufe());
 
             einsatz.UpdateAlarmstufe(3);
 
-            Console.WriteLine("Alarmstufe: " + einsatz.alarmstufe);
+            Console.WriteLine("Alarmstufe: " + einsatz.GetAlarmstufe());
         }
     }
 }
