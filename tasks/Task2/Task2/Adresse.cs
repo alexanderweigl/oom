@@ -87,7 +87,21 @@ namespace Task2
             this.stadt = stadt;
             this.straße = straße;
             this.hausnummer = hausnummer;
+            this.stiege = stiege;
+            this.stock = stock;
             this.tuer = tuer;
+        }
+
+        public override string ToString()
+        {
+            if ((stiege == 0) && (stock == 0) && (tuer == 0))
+                return $"{plz} {stadt}, {straße} {hausnummer}";
+            else if ((stiege == 0) && (stock == 0))
+                return $"{plz} {stadt}, {straße} {hausnummer}/{tuer}";
+            else if (stock == 0)
+                return $"{plz} {stadt}, {straße} {hausnummer}/{stiege}/{tuer}";
+            else
+                return $"{plz} {stadt}, {straße} {hausnummer}/{stiege}/{stock}/{tuer}";
         }
     }
 }

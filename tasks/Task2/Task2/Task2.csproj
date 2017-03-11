@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Feuerwehr.cs" />
     <Compile Include="Feuerwehreinsatz.cs" />
     <Compile Include="Adresse.cs" />
+    <Compile Include="iAdresse.cs" />
+    <Compile Include="Melder.cs" />
+    <Compile Include="Opfer.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

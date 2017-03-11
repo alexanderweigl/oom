@@ -6,38 +6,44 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    class Feuerwehreinsatz
+    class Feuerwehreinsatz:iAdresse
     {
         private Adresse ort;
         private DateTime beginn;
         private DateTime ende;
-        private Person melder;
-        private List<Person> beteiligte;
+        private Melder melder;
+        private List<Opfer> beteiligte;
         private int alarmstufe;
         private string meldebild;
+        private List<Feuerwehr> feuerwehren;
+        
+        public List<Feuerwehr> Feuerwehrwehren { get { return feuerwehren; } }
 
         /// <summary>
-        /// Erstellt einen neuen Einsatz
+        /// Erstellt einen neuen Einsatz mit einer Feuerwehr
         /// </summary>
         /// <param name="ort"></param>
         /// <param name="melder"></param>
         /// <param name="meldebild"></param>
-        public Feuerwehreinsatz(Adresse ort, Person melder, string meldebild)
+        /// <param name="feuerwehr"></param>
+        public Feuerwehreinsatz(Adresse ort, Melder melder, string meldebild, Feuerwehr feuerwehr)
         {
             this.beginn = DateTime.Now;
             this.ort = ort;
             this.melder = melder;
             this.meldebild = meldebild;
             this.alarmstufe = 1;
+            this.feuerwehren = new List<Feuerwehr>();
+            this.feuerwehren.Add(feuerwehr);
         }
         /// <summary>
         /// Fügt beteiligte Personen am Unfall hinzu
         /// </summary>
         /// <param name="beteiligte"></param>
-        public void BeteiligtenHinzu(Person beteiligte)
+        public void BeteiligtenHinzu(Opfer beteiligte)
         {
             if(this.beteiligte == null)
-                this.beteiligte = new List<Person>();
+                this.beteiligte = new List<Opfer>();
 
             this.beteiligte.Add(beteiligte);
         }
@@ -49,18 +55,12 @@ namespace Task2
             this.ende = DateTime.Now;
         }
         /// <summary>
-        /// Methode konvertiert eine Adresse zu einem String mit Berücksichtigung der vorhanden Informationen
+        /// Fügt Feuerwehr zum Einsatz hinzu
         /// </summary>
-        /// <param name="ort"></param>
-        /// <returns></returns>
-        private string AnschriftToString(Adresse ort)
+        /// <param name="feuerwehr"></param>
+        public void AddFeuerwehr(Feuerwehr feuerwehr)
         {
-            if ((ort.Stiege == 0) && (ort.Stock == 0) && (ort.Tuer == 0))
-                return $"{ort.PLZ} {ort.Stadt}, {ort.Straße} {ort.Hausnummer}";
-            else if ((ort.Stiege == 0) && (ort.Stock == 0))
-                return $"{ort.PLZ} {ort.Stadt}, {ort.Straße} {ort.Hausnummer}/{ort.Tuer}";
-            else
-                return $"{ort.PLZ} {ort.Stadt}, {ort.Straße} {ort.Hausnummer}/{ort.Stiege}/{ort.Stock}/{ort.Tuer}";
+            feuerwehren.Add(feuerwehr);
         }
         /// <summary>
         /// Überschreibt die ToString-Methode zur einfachen Ausgabe in einer foreach-Schleife
@@ -71,23 +71,31 @@ namespace Task2
             string tmp = $"Einsatz: {meldebild} - {alarmstufe}\nBeginn: {beginn}\n";
             if (ende != new DateTime())
                 tmp += $"Ende: {ende}\n";
-            tmp += $"Einsatzort: {AnschriftToString(ort)}\nMelder: {melder.Vorname} {melder.Nachname}";
+            tmp += $"Einsatzort: {ort}\nMelder: {melder.Vorname} {melder.Nachname} ({melder.Telefonnummer})";
             
             if(beteiligte != null)
             {
                 tmp += "\n\nBeteiligte:\n";
-                foreach (Person x in beteiligte)
+                foreach (Opfer x in beteiligte)
                 {
                     tmp += $"{x.Vorname} {x.Nachname}";
 
                     if (x.Anschrift != null)
-                        tmp += $" - {AnschriftToString(x.Anschrift)}\n";
+                        tmp += $" - {ort}\n";
                     else
                         tmp += "\n";
                 }
             }
 
             return tmp;
+        }
+        /// <summary>
+        /// Interface Implementierung
+        /// </summary>
+        /// <returns>ort</returns>
+        public Adresse GetAdresse()
+        {
+            return ort;
         }
     }
 }
