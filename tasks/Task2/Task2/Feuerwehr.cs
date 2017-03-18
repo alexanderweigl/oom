@@ -10,16 +10,18 @@ namespace Task2
     {
         private string name;
         private Adresse adresse;
-        private List<Person> Mitglieder;
+        private List<Person> mitglieder;
 
         public string Name { get { return name; } set { } }
+        public Adresse Adresse { get { return adresse; } }
+        public List<Person> Mitglieder { get { return mitglieder; } }
 
         public Feuerwehr() { }
         public Feuerwehr(string name, Adresse adresse)
         {
             this.name = name;
             this.adresse = adresse;
-            Mitglieder = new List<Person>();
+            mitglieder = new List<Person>();
         }
         /// <summary>
         /// Interface Implementierung

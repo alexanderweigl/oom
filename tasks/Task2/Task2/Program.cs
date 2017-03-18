@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Task2
 {
@@ -11,6 +13,16 @@ namespace Task2
     {
         static void Main(string[] args)
         {
+            /*List<Feuerwehreinsatz> einsaetze_loaded = LoadEinsaetze();
+
+            if (einsaetze_loaded == null)
+                throw new NullReferenceException();
+
+            foreach(Feuerwehreinsatz y in (List<Feuerwehreinsatz>)einsaetze_loaded)
+            {
+                Console.WriteLine(y.Feuerwehren[0].Name);
+            }*/
+
             List<Feuerwehreinsatz> einsaetze = new List<Feuerwehreinsatz>();
 
             Feuerwehr feuerwehr_wien_hw = new Feuerwehr("Berufsfeuerwehr der Stadt Wien - HW", new Adresse(1010, "Wien", "Am Hof", 1));
@@ -22,7 +34,6 @@ namespace Task2
 
             Opfer opfer1 = new Opfer("Stefanie", "Herz", new Adresse(3562, "Mollands", "Weinstraße", 16));
             einsaetze[0].BeteiligtenHinzu(opfer1);
-
 
             foreach (Feuerwehreinsatz x in einsaetze)
             {
@@ -40,7 +51,7 @@ namespace Task2
             Opfer opfer3 = new Opfer("Alexander", "Weigl", new Adresse(1150, "Wien", "Kranzgasse", 11, 1, 1, 8));
             einsaetze[0].BeteiligtenHinzu(opfer3);
 
-            einsaetze[1].Ende();
+            einsaetze[1].End();
 
             foreach (Feuerwehreinsatz x in einsaetze)
             {
@@ -51,7 +62,7 @@ namespace Task2
 
             foreach (Feuerwehreinsatz fe in einsaetze)
             {
-                foreach (Feuerwehr f in fe.Feuerwehrwehren)
+                foreach (Feuerwehr f in fe.Feuerwehren)
                 {
                     Console.WriteLine(f.Name);
                 }
@@ -65,6 +76,29 @@ namespace Task2
             {
                 Console.WriteLine(o.GetAdresse());
             }
+
+            Save(einsaetze);
+        }
+
+        static void Save(List<Feuerwehreinsatz> einsaetze)
+        {
+            if (File.Exists("save.txt") == true)
+                File.Delete("save.txt");
+
+            File.WriteAllText("save.txt", JsonConvert.SerializeObject(einsaetze));
+        }
+
+        static List<Feuerwehreinsatz> LoadEinsaetze()
+        {
+            if (File.Exists("save.txt") == true)
+            {
+                string s = File.ReadAllText("save.txt");
+
+                return JsonConvert.DeserializeObject<List<Feuerwehreinsatz>>(s);
+            }
+
+            return null;
         }
     }
+
 }

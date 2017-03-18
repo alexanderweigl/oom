@@ -16,8 +16,15 @@ namespace Task2
         private int alarmstufe;
         private string meldebild;
         private List<Feuerwehr> feuerwehren;
-        
-        public List<Feuerwehr> Feuerwehrwehren { get { return feuerwehren; } }
+
+        public Adresse Ort { get { return ort; } }
+        public DateTime Beginn { get { return beginn; } }
+        public DateTime Ende { get { return ende; } }
+        public Melder Melder { get { return melder; } }
+        public List<Opfer> Beteiligte { get { return beteiligte; } }
+        public int Alarmstufe { get { return alarmstufe; } }
+        public string Meldebild { get { return meldebild; } }
+        public List<Feuerwehr> Feuerwehren { get { return feuerwehren; } }
 
         /// <summary>
         /// Erstellt einen neuen Einsatz mit einer Feuerwehr
@@ -50,7 +57,7 @@ namespace Task2
         /// <summary>
         /// Beendet den Einsatz
         /// </summary>
-        public void Ende()
+        public void End()
         {
             this.ende = DateTime.Now;
         }
