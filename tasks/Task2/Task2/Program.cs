@@ -13,15 +13,16 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            /*List<Feuerwehreinsatz> einsaetze_loaded = LoadEinsaetze();
+            List<Feuerwehreinsatz> einsaetze_loaded = LoadEinsaetze();
 
             if (einsaetze_loaded == null)
                 throw new NullReferenceException();
 
             foreach(Feuerwehreinsatz y in (List<Feuerwehreinsatz>)einsaetze_loaded)
             {
-                Console.WriteLine(y.Feuerwehren[0].Name);
-            }*/
+                Console.WriteLine(y.Melder.Vorname);
+            }
+            Console.ReadLine();
 
             List<Feuerwehreinsatz> einsaetze = new List<Feuerwehreinsatz>();
 
@@ -77,7 +78,7 @@ namespace Task2
                 Console.WriteLine(o.GetAdresse());
             }
 
-            Save(einsaetze);
+           // Save(einsaetze);
         }
 
         static void Save(List<Feuerwehreinsatz> einsaetze)

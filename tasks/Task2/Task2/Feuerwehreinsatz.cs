@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,18 @@ namespace Task2
         public string Meldebild { get { return meldebild; } }
         public List<Feuerwehr> Feuerwehren { get { return feuerwehren; } }
 
+        [JsonConstructor]
+        public Feuerwehreinsatz(Adresse ort, DateTime beginn, DateTime ende, Melder melder, List<Opfer> beteiligte, int alarmstufe, string meldebild, List<Feuerwehr> feuerwehren)
+        {
+            this.ort = ort;
+            this.beginn = beginn;
+            this.ende = ende;
+            this.melder = melder;
+            this.beteiligte = beteiligte;
+            this.alarmstufe = alarmstufe;
+            this.meldebild = meldebild;
+            this.feuerwehren = feuerwehren;
+        }
         /// <summary>
         /// Erstellt einen neuen Einsatz mit einer Feuerwehr
         /// </summary>

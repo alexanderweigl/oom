@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -81,6 +82,7 @@ namespace Task2
         /// <param name="stiege"></param>
         /// <param name="stock"></param>
         /// <param name="tuer"></param>
+        [JsonConstructor]
         public Adresse(int plz, string stadt, string straße, int hausnummer, int stiege, int stock, int tuer)
         {
             this.plz = plz;

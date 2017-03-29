@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace Task2
         public List<Person> Mitglieder { get { return mitglieder; } }
 
         public Feuerwehr() { }
+        [JsonConstructor]
         public Feuerwehr(string name, Adresse adresse)
         {
             this.name = name;
